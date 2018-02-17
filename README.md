@@ -1,2 +1,2 @@
 # hoth-iv-game
-Name optional
+Temporary name, will change

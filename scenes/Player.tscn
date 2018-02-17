@@ -8,12 +8,22 @@
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
 "name": "moving",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "falling",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
@@ -25,16 +35,6 @@ animations = [ {
 "loop": true,
 "name": "jumping",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "falling",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -43,13 +43,14 @@ custom_solver_bias = 0.0
 radius = 8.53903
 height = 36.4311
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Material" ]
 SPEED = 300
 JUMP_SPEED = 400
 GRAVITY = 1000

@@ -1,22 +1,61 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Shader" id=1]
+
+code = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+
+render_priority = 0
+shader = SubResource( 1 )
+_sections_unfolded = [ "shader_param" ]
+
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 31.9953, 32.0274 )
 
+[sub_resource type="Shader" id=4]
+
+code = "shader_type canvas_item;
+
+uniform float brightness = 1.0;
+uniform float contrast = 1.0;
+uniform float saturation = 0.2;
+
+void fragment()
+{
+	vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.7).rgb;
+
+	c.rgb = mix(vec3(0.0), c.rgb, brightness);
+	c.rgb = mix(vec3(0.5), c.rgb, contrast);
+	c.rgb = mix(vec3(dot(vec3(1.0), c.rgb)*0.33333), c.rgb, saturation);
+
+	COLOR.rgb = c;
+}"
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="ShaderMaterial" id=5]
+
+render_priority = 0
+shader = SubResource( 4 )
+shader_param/brightness = 0.95
+shader_param/contrast = 1.0
+shader_param/saturation = 0.2
+_sections_unfolded = [ "shader_param" ]
+
 [node name="Node" type="Node" index="0"]
 
-[node name="staticbodies" type="Node" parent="." index="0"]
+[node name="env" type="Node" parent="." index="0"]
 
 editor/display_folded = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="staticbodies" index="0"]
+[node name="floor" type="StaticBody2D" parent="env" index="0"]
 
 editor/display_folded = true
-position = Vector2( 5499.56, 578.172 )
+position = Vector2( 5413.46, 578.172 )
 scale = Vector2( 172.486, 3.9608 )
 input_pickable = false
 collision_layer = 1
@@ -30,8 +69,9 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="staticbodies/StaticBody2D" index="0"]
+[node name="ColorRect" type="ColorRect" parent="env/floor" index="0"]
 
+material = SubResource( 2 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -46,14 +86,14 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 0, 0, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbodies/StaticBody2D" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/floor" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="staticbodies" index="1"]
+[node name="block1" type="StaticBody2D" parent="env" index="1"]
 
 editor/display_folded = true
 position = Vector2( 1152.73, 365.944 )
@@ -70,7 +110,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="staticbodies/StaticBody2D2" index="0"]
+[node name="ColorRect" type="ColorRect" parent="env/block1" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -85,18 +125,18 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
+color = Color( 0.262207, 0.49437, 0.699219, 1 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbodies/StaticBody2D2" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block1" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="staticbodies" index="2"]
+[node name="block10" type="StaticBody2D" parent="env" index="2"]
 
 editor/display_folded = true
-position = Vector2( 1963.26, 120.786 )
+position = Vector2( 3297.73, 164.062 )
 scale = Vector2( 2.27354, 1.4746 )
 input_pickable = false
 collision_layer = 1
@@ -110,7 +150,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="staticbodies/StaticBody2D3" index="0"]
+[node name="ColorRect" type="ColorRect" parent="env/block10" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -125,18 +165,18 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
+color = Color( 0.262207, 0.49437, 0.699219, 1 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbodies/StaticBody2D3" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block10" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="staticbodies" index="3"]
+[node name="block2" type="StaticBody2D" parent="env" index="3"]
 
 editor/display_folded = true
-position = Vector2( 2779.56, 252.92 )
+position = Vector2( 1579.01, 292.55 )
 scale = Vector2( 2.27354, 1.4746 )
 input_pickable = false
 collision_layer = 1
@@ -150,7 +190,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="staticbodies/StaticBody2D4" index="0"]
+[node name="ColorRect" type="ColorRect" parent="env/block2" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -165,18 +205,18 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
+color = Color( 0.347888, 0.660156, 0.260452, 1 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbodies/StaticBody2D4" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block2" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="staticbodies" index="4"]
+[node name="block9" type="StaticBody2D" parent="env" index="4"]
 
 editor/display_folded = true
-position = Vector2( 3842.51, 111.977 )
+position = Vector2( 3724.01, 90.6674 )
 scale = Vector2( 2.27354, 1.4746 )
 input_pickable = false
 collision_layer = 1
@@ -190,7 +230,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="staticbodies/StaticBody2D5" index="0"]
+[node name="ColorRect" type="ColorRect" parent="env/block9" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -205,18 +245,18 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
+color = Color( 0.347888, 0.660156, 0.260452, 1 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbodies/StaticBody2D5" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block9" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="StaticBody2D6" type="StaticBody2D" parent="staticbodies" index="5"]
+[node name="block3" type="StaticBody2D" parent="env" index="5"]
 
 editor/display_folded = true
-position = Vector2( 5184.42, 223.557 )
+position = Vector2( 2128.92, 196.997 )
 scale = Vector2( 2.27354, 1.4746 )
 input_pickable = false
 collision_layer = 1
@@ -230,7 +270,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="staticbodies/StaticBody2D6" index="0"]
+[node name="ColorRect" type="ColorRect" parent="env/block3" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -245,18 +285,18 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
+color = Color( 0.678604, 0.8125, 0.126953, 1 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbodies/StaticBody2D6" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block3" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="StaticBody2D7" type="StaticBody2D" parent="staticbodies" index="6"]
+[node name="block7" type="StaticBody2D" parent="env" index="6"]
 
 editor/display_folded = true
-position = Vector2( 6235.62, 120.786 )
+position = Vector2( 4273.92, -4.88527 )
 scale = Vector2( 2.27354, 1.4746 )
 input_pickable = false
 collision_layer = 1
@@ -270,7 +310,127 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="staticbodies/StaticBody2D7" index="0"]
+[node name="ColorRect" type="ColorRect" parent="env/block7" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.678604, 0.8125, 0.126953, 1 )
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block7" index="1"]
+
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="block4" type="StaticBody2D" parent="env" index="7"]
+
+editor/display_folded = true
+position = Vector2( 2707.68, 267.763 )
+scale = Vector2( 2.27354, 1.4746 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="env/block4" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.664063, 0.274963, 0.639744, 1 )
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block4" index="1"]
+
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="block8" type="StaticBody2D" parent="env" index="8"]
+
+editor/display_folded = true
+position = Vector2( 4852.68, 65.8804 )
+scale = Vector2( 2.27354, 1.4746 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="env/block8" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.664063, 0.274963, 0.639744, 1 )
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block8" index="1"]
+
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="block5" type="StaticBody2D" parent="env" index="9"]
+
+editor/display_folded = true
+position = Vector2( 5537.71, 227.162 )
+scale = Vector2( 2.27354, 1.4746 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="env/block5" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -288,13 +448,98 @@ size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="staticbodies/StaticBody2D7" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block5" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 3 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="block6" type="StaticBody2D" parent="env" index="10"]
+
+editor/display_folded = true
+position = Vector2( 6289.7, 156.836 )
+scale = Vector2( 2.27354, 1.4746 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="env/block6" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+margin_left = -32.0
+margin_top = -32.0
+margin_right = -32.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block6" index="1"]
+
+shape = SubResource( 3 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Player" parent="." index="1" instance=ExtResource( 1 )]
 
 position = Vector2( 409.352, 228.908 )
+
+[node name="Desaturator" type="RigidBody2D" parent="." index="2"]
+
+position = Vector2( -174.236, -465.67 )
+input_pickable = false
+collision_layer = 65536
+collision_mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 200, 0 )
+linear_damp = 0.0
+angular_velocity = 0.0
+angular_damp = -1.0
+_sections_unfolded = [ "Collision", "Linear", "Material", "Pickable", "Transform" ]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="colorrect" type="ColorRect" parent="Desaturator" index="0"]
+
+material = SubResource( 5 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -2963.0
+margin_top = -153.0
+margin_right = 13.0
+margin_bottom = 1948.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 1, 1, 1, 1 )
+_sections_unfolded = [ "Margin", "Material", "Theme", "Visibility" ]
 
 

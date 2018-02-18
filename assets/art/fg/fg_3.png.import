@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/buildings.png-e3fb9539d67795075a509634ef8c043b.stex"
+path="res://.import/fg_3.png-d4563a2d1cee3295b26948a5ef2f962e.stex"
 
 [deps]
 
-source_file="res://assets/art/bg/buildings.png"
-source_md5="7e2025c11208cbfb66f1827eb52cd5fd"
+source_file="res://assets/art/fg/fg_3.png"
+source_md5="f94b2faff4829e3bd4f4c1ad6926bb7d"
 
-dest_files=[ "res://.import/buildings.png-e3fb9539d67795075a509634ef8c043b.stex" ]
-dest_md5="3f2d60ae6865b9e0b42274a5e30ac54f"
+dest_files=[ "res://.import/fg_3.png-d4563a2d1cee3295b26948a5ef2f962e.stex" ]
+dest_md5="57552642af74efb8a0b99251842a77df"
 
 [params]
 

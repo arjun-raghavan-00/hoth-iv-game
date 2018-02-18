@@ -1,22 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/DrumEnemy.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/drum_enemy/drums.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32.0561, 14.0053 )
+extents = Vector2( 18.5942, 14.0053 )
 
-[node name="DrumEnemy" type="KinematicBody2D"]
+[node name="DrumEnemy" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
-__meta__ = {
-"_edit_group_": true
-}
+script = ExtResource( 1 )
+JUMP_SPEED = 300
+GRAVITY = 1000
+SPEED = 20
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 
+visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -33,9 +38,24 @@ size_flags_vertical = 1
 color = Color( 0.121994, 0.103149, 0.253906, 1 )
 _sections_unfolded = [ "Grow Direction", "Margin" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="col" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( 0, 17.982 )
 shape = SubResource( 1 )
+
+[node name="JumpTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
+[node name="Sprite" type="Sprite" parent="." index="3"]
+
+position = Vector2( -5.28152, 25.0872 )
+scale = Vector2( 0.0539526, 0.0539527 )
+texture = ExtResource( 2 )
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 
 

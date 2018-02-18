@@ -10,13 +10,15 @@ var canDash = true
 var jumps = 0
 var dashspeed = 0
 
-onready var sprite = $AnimatedSprite
+onready var sprite = $sprite
+onready var anim = $animator
 
 func _ready():
-	sprite.play()
+	get_node("/root/global").health = 3
 
 func _physics_process(delta):
-	if !sprite.flip_h:
+	
+	if !sprite.scale.x < 0:
 		dashspeed = 1
 	else:
 		dashspeed = -1
@@ -31,13 +33,13 @@ func _physics_process(delta):
 	var speed = 0
 	
 	if Input.is_action_pressed("ui_right"):
-		sprite.animation = "moving"
+		moving = true
 		speed += 1
 	elif Input.is_action_pressed("ui_left"):
-		sprite.animation = "moving"
+		moving = true
 		speed -= 1
 	else:
-		sprite.animation = "idle"
+		moving = false
 		velocity.x = lerp(velocity.x, 0, 0.1)
 		
 	if Input.is_action_just_pressed("game_jump") and (is_on_floor() or jumps < 2):
@@ -56,10 +58,20 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("game_dash") and canDash:
 		velocity.x = lerp(velocity.x, dashspeed*SPEED*25, 0.1)
+		anim.current_animation = "dash"
 		$dashtimer.start()
 		
 	velocity.x = lerp(velocity.x, speed, 0.1)
 	
 	move_and_slide(velocity, Vector2(0, -1))
 	
-	sprite.flip_h = velocity.x < 0
+	sprite.scale.x = -1 if velocity.x < 0 else 1
+	if anim.current_animation == "dash":
+		anim.queue("run" if moving else "rest")
+	else:
+		anim.current_animation = "run" if moving else "rest"
+		
+	if Input.is_action_just_pressed("game_reset") or get_node("/root/global").pos > position.x or get_node("/root/global").health == 0:
+		get_tree().reload_current_scene()
+	
+	print("Player pos: " + str(position.x))

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+signal hit
 export (int) var SPEED = 300
 export (int) var JUMP_SPEED = 400
 export (int) var GRAVITY = 1000
@@ -10,10 +11,12 @@ var canDash = true
 var jumps = 0
 var dashspeed = 0
 
+
 onready var sprite = $AnimatedSprite
 
 func _ready():
 	sprite.play()
+	get_node("/root/global").health = 3
 
 func _physics_process(delta):
 	if !sprite.flip_h:
@@ -62,4 +65,7 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector2(0, -1))
 	
+	
+	if get_node("/root/global").health==0:
+		get_tree().reload_current_scene()
 	sprite.flip_h = velocity.x < 0

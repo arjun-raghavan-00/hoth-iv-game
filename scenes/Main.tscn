@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/DrumEnemy.tscn" type="PackedScene" id=2]
 
 [sub_resource type="Shader" id=1]
 
@@ -50,11 +51,8 @@ _sections_unfolded = [ "shader_param" ]
 
 [node name="env" type="Node" parent="." index="0"]
 
-editor/display_folded = true
-
 [node name="floor" type="StaticBody2D" parent="env" index="0"]
 
-editor/display_folded = true
 position = Vector2( 5413.46, 578.172 )
 scale = Vector2( 172.486, 3.9608 )
 input_pickable = false
@@ -91,11 +89,10 @@ _sections_unfolded = [ "Anchor", "Margin", "Material", "Rect" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="env/floor" index="1"]
 
 shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 
 [node name="block1" type="StaticBody2D" parent="env" index="1"]
 
-editor/display_folded = true
 position = Vector2( 1152.73, 365.944 )
 scale = Vector2( 2.27354, 1.4746 )
 input_pickable = false
@@ -541,5 +538,11 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Margin", "Material", "Theme", "Visibility" ]
+
+[node name="DrumEnemy" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 1845.27, 419.791 )
+scale = Vector2( 1, 0.99183 )
+JUMP_SPEED = 500
 
 

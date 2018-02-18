@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/buildings.png-e3fb9539d67795075a509634ef8c043b.stex"
+path="res://.import/drums.png-d02883556fb7418e276cf404a16be498.stex"
 
 [deps]
 
-source_file="res://assets/art/bg/buildings.png"
-source_md5="7e2025c11208cbfb66f1827eb52cd5fd"
+source_file="res://assets/art/drum_enemy/drums.png"
+source_md5="24571863b645afaea65866aeec7f5033"
 
-dest_files=[ "res://.import/buildings.png-e3fb9539d67795075a509634ef8c043b.stex" ]
-dest_md5="3f2d60ae6865b9e0b42274a5e30ac54f"
+dest_files=[ "res://.import/drums.png-d02883556fb7418e276cf404a16be498.stex" ]
+dest_md5="d95d562fb7920643533859b771c4109e"
 
 [params]
 

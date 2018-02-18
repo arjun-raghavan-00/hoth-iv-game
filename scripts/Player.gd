@@ -73,3 +73,5 @@ func _physics_process(delta):
 		
 	if Input.is_action_just_pressed("game_reset") or get_node("/root/global").pos > position.x or get_node("/root/global").health == 0:
 		get_tree().reload_current_scene()
+	
+	print("Player pos: " + str(position.x))

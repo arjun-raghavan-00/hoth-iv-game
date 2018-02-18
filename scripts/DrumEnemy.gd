@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export (int) var JUMP_SPEED = 400
+export (int) var JUMP_SPEED = 300
 export (int) var GRAVITY = 1000
 export (int) var SPEED = 20
 
@@ -16,7 +16,7 @@ func _physics_process(delta):
 		velocity.y = -JUMP_SPEED
 		jumps = 0
 	
-	velocity.x = -SPEED
+	velocity.x = -SPEED*0
 	
 	move_and_slide(velocity,Vector2(0,-1))
 	
@@ -26,7 +26,7 @@ func _physics_process(delta):
 				queue_free()
 			else:
 				get_node("/root/global").health -= 1
-				move_and_slide(Vector2(1000,1500),Vector2(0,-1))
+				move_and_slide(Vector2(1000,0) + velocity,Vector2(0,-1))
 
 
 func _on_JumpTimer_timeout():

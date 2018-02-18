@@ -5,3 +5,4 @@ func _ready():
 
 func _process(delta):
 	get_node("/root/global").pos = position.x
+	print("pos: " + str(position.x))

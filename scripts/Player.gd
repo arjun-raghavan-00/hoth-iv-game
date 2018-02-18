@@ -62,4 +62,6 @@ func _physics_process(delta):
 	
 	move_and_slide(velocity, Vector2(0, -1))
 	
+	if get_node("/root/global").pos > position.x:
+		get_tree().reload_current_scene()
 	sprite.flip_h = velocity.x < 0

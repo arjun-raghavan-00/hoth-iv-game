@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/art/fg/Hackathon Game Foreground.png" type="Texture" id=1]
 
-[node name="Stage" type="StaticBody2D" index="0"]
+[node name="Stage" type="StaticBody2D"]
 
 input_pickable = false
 collision_layer = 1

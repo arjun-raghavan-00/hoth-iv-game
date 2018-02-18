@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Sprite Eyes.png-3c39b68b69930cbe8ffc9ecb075d9196.stex"
+
+[deps]
+
+source_file="res://assets/art/player/Sprite Eyes.png"
+source_md5="175e0423924392bc45dd889331825e4e"
+
+dest_files=[ "res://.import/Sprite Eyes.png-3c39b68b69930cbe8ffc9ecb075d9196.stex" ]
+dest_md5="def35d72445f72037a72c345d55f857f"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Sprite Head.png-cb0a1bf01ab5f84a21b89d83eb7accb7.stex"
+
+[deps]
+
+source_file="res://assets/art/player/Sprite Head.png"
+source_md5="1f90950c46208d24a61195a189b74215"
+
+dest_files=[ "res://.import/Sprite Head.png-cb0a1bf01ab5f84a21b89d83eb7accb7.stex" ]
+dest_md5="348e4d08c29a645d8ef5b313c3f9c722"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

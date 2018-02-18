@@ -1,3 +1,4 @@
 extends Node
 
-var vibrancy = 128
+var health = 3
+var pos = 0

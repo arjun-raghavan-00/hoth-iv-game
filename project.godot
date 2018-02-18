@@ -11,8 +11,14 @@ config_version=3
 [application]
 
 config/name="HOTHIV_Game"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1280
+window/size/resizable=false
+window/size/fullscreen=true
 
 [input]
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Plini Electric Sunrise.wav-28e6720a82967e5a14f9d020e4e99c52.sample"
+
+[deps]
+
+source_file="res://assets/music/Plini Electric Sunrise.wav"
+source_md5="1fe25e8c1591b80c664e3532b4dd271a"
+
+dest_files=[ "res://.import/Plini Electric Sunrise.wav-28e6720a82967e5a14f9d020e4e99c52.sample" ]
+dest_md5="9a518973798e2862adeeb541062155c3"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

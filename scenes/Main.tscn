@@ -1,33 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/art/bg/gradient.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/bg/mountains.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/bg/buildings.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Stage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
 
-[sub_resource type="Shader" id=1]
-
-code = ""
-
-[sub_resource type="ShaderMaterial" id=2]
-
-render_priority = 0
-shader = SubResource( 1 )
-_sections_unfolded = [ "shader_param" ]
-
-[sub_resource type="RectangleShape2D" id=3]
-
-custom_solver_bias = 0.0
-extents = Vector2( 31.9953, 32.0274 )
-
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=6]
 
 code = "shader_type canvas_item;
 
 uniform float brightness = 1.0;
 uniform float contrast = 1.0;
 uniform float saturation = 0.2;
+uniform float blur = 0.9;
 
 void fragment()
 {
-	vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.7).rgb;
+	vec3 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, blur).rgb;
 
 	c.rgb = mix(vec3(0.0), c.rgb, brightness);
 	c.rgb = mix(vec3(0.5), c.rgb, contrast);
@@ -35,467 +25,155 @@ void fragment()
 
 	COLOR.rgb = c;
 }"
-_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="ShaderMaterial" id=5]
 
 render_priority = 0
-shader = SubResource( 4 )
+shader = SubResource( 6 )
 shader_param/brightness = 0.95
 shader_param/contrast = 1.0
-shader_param/saturation = 0.2
+shader_param/saturation = 0.3
+shader_param/blur = 0.7
 _sections_unfolded = [ "shader_param" ]
 
 [node name="Node" type="Node" index="0"]
 
-[node name="env" type="Node" parent="." index="0"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = false
+
+[node name="gradient" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
 editor/display_folded = true
-
-[node name="floor" type="StaticBody2D" parent="env" index="0"]
-
-editor/display_folded = true
-position = Vector2( 5413.46, 578.172 )
-scale = Vector2( 172.486, 3.9608 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 1464.47, -220.151 )
+motion_scale = Vector2( 0.2, 0.2 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Material", "Motion" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="env/floor" index="0"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/gradient" index="0"]
 
-material = SubResource( 2 )
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 1, 0, 0, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect" ]
+position = Vector2( -1173.73, 300.137 )
+scale = Vector2( 0.426892, 0.599818 )
+texture = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/floor" index="1"]
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/gradient" index="1"]
 
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+position = Vector2( 544.225, 300.137 )
+scale = Vector2( 0.426892, 0.599818 )
+texture = ExtResource( 1 )
 
-[node name="block1" type="StaticBody2D" parent="env" index="1"]
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/gradient" index="2"]
+
+position = Vector2( 2290.87, 300.137 )
+scale = Vector2( 0.426892, 0.599818 )
+texture = ExtResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground/gradient" index="3"]
+
+position = Vector2( 4020.04, 300.137 )
+scale = Vector2( 0.426892, 0.599818 )
+texture = ExtResource( 1 )
+
+[node name="Sprite5" type="Sprite" parent="ParallaxBackground/gradient" index="4"]
+
+position = Vector2( 5768.33, 300.137 )
+scale = Vector2( 0.426892, 0.599818 )
+texture = ExtResource( 1 )
+
+[node name="Sprite6" type="Sprite" parent="ParallaxBackground/gradient" index="5"]
+
+position = Vector2( 7516.62, 300.137 )
+scale = Vector2( 0.426892, 0.599818 )
+texture = ExtResource( 1 )
+
+[node name="mountains" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
+
+position = Vector2( 1810, -460 )
+scale = Vector2( 1, 1.43985 )
+motion_scale = Vector2( 0.5, 0.5 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Material", "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/mountains" index="0"]
+
+position = Vector2( -1250, 437.545 )
+scale = Vector2( 0.322151, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/mountains" index="1"]
+
+position = Vector2( 469.998, 437.545 )
+scale = Vector2( 0.322151, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/mountains" index="2"]
+
+position = Vector2( 2580, 437.545 )
+scale = Vector2( 0.322151, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground/mountains" index="3"]
+
+position = Vector2( 4690, 437.545 )
+scale = Vector2( 0.322151, 0.4 )
+texture = ExtResource( 2 )
+
+[node name="buildings" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
 
 editor/display_folded = true
-position = Vector2( 1152.73, 365.944 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
+position = Vector2( 1960.22, -247.76 )
+scale = Vector2( 1, 1.49251 )
+motion_scale = Vector2( 0.7, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Material", "Motion" ]
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="env/block1" index="0"]
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/buildings" index="0"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.262207, 0.49437, 0.699219, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+position = Vector2( -656.119, 386.989 )
+scale = Vector2( 0.679629, 0.484015 )
+texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block1" index="1"]
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/buildings" index="1"]
 
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+position = Vector2( 1689.46, 386.989 )
+scale = Vector2( 0.679629, 0.484015 )
+texture = ExtResource( 3 )
 
-[node name="block10" type="StaticBody2D" parent="env" index="2"]
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/buildings" index="2"]
 
-editor/display_folded = true
-position = Vector2( 3297.73, 164.062 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
+position = Vector2( 2770.95, 386.989 )
+scale = Vector2( 0.679629, 0.484015 )
+texture = ExtResource( 3 )
 
-[node name="ColorRect" type="ColorRect" parent="env/block10" index="0"]
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground/buildings" index="3"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.262207, 0.49437, 0.699219, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+position = Vector2( 5903.07, 386.989 )
+scale = Vector2( 0.679629, 0.484015 )
+texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block10" index="1"]
+[node name="Stage" parent="." index="1" instance=ExtResource( 4 )]
 
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block2" type="StaticBody2D" parent="env" index="3"]
-
-editor/display_folded = true
-position = Vector2( 1579.01, 292.55 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block2" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.347888, 0.660156, 0.260452, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block2" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block9" type="StaticBody2D" parent="env" index="4"]
-
-editor/display_folded = true
-position = Vector2( 3724.01, 90.6674 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block9" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.347888, 0.660156, 0.260452, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block9" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block3" type="StaticBody2D" parent="env" index="5"]
-
-editor/display_folded = true
-position = Vector2( 2128.92, 196.997 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block3" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.678604, 0.8125, 0.126953, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block3" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block7" type="StaticBody2D" parent="env" index="6"]
-
-editor/display_folded = true
-position = Vector2( 4273.92, -4.88527 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block7" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.678604, 0.8125, 0.126953, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block7" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block4" type="StaticBody2D" parent="env" index="7"]
-
-editor/display_folded = true
-position = Vector2( 2707.68, 267.763 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block4" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.664063, 0.274963, 0.639744, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block4" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block8" type="StaticBody2D" parent="env" index="8"]
-
-editor/display_folded = true
-position = Vector2( 4852.68, 65.8804 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block8" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 0.664063, 0.274963, 0.639744, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block8" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block5" type="StaticBody2D" parent="env" index="9"]
-
-editor/display_folded = true
-position = Vector2( 5537.71, 227.162 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block5" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block5" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="block6" type="StaticBody2D" parent="env" index="10"]
-
-editor/display_folded = true
-position = Vector2( 6289.7, 156.836 )
-scale = Vector2( 2.27354, 1.4746 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="ColorRect" type="ColorRect" parent="env/block6" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 0.0
-margin_left = -32.0
-margin_top = -32.0
-margin_right = -32.0
-margin_bottom = 32.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-color = Color( 1, 1, 1, 1 )
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="env/block6" index="1"]
-
-shape = SubResource( 3 )
-_sections_unfolded = [ "Transform", "Z Index" ]
-
-[node name="Player" parent="." index="1" instance=ExtResource( 1 )]
-
-position = Vector2( 409.352, 228.908 )
+position = Vector2( 3290, 560 )
+scale = Vector2( 0.743376, 0.743376 )
 
 [node name="Desaturator" type="RigidBody2D" parent="." index="2"]
 
@@ -514,7 +192,7 @@ contacts_reported = 0
 contact_monitor = false
 sleeping = false
 can_sleep = true
-linear_velocity = Vector2( 200, 0 )
+linear_velocity = Vector2( 125, 0 )
 linear_damp = 0.0
 angular_velocity = 0.0
 angular_damp = -1.0
@@ -541,5 +219,10 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Margin", "Material", "Theme", "Visibility" ]
+
+[node name="Player" parent="." index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 375.352, 417.633 )
+SPEED = 175
 
 

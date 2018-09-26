@@ -8,12 +8,12 @@
 [ext_resource path="res://assets/art/player/right_arm.png" type="Texture" id=6]
 [ext_resource path="res://assets/art/player/right_leg.png" type="Texture" id=7]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 28.8212
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 
 resource_name = "dash"
 length = 0.7
@@ -410,14 +410,14 @@ GRAVITY = 1000
 
 [node name="leftarm" type="Sprite" parent="sprite" index="0"]
 
-position = Vector2( 17.1777, -4.4032 )
+position = Vector2( 17.1777, -4.40319 )
 scale = Vector2( 0.029163, 0.029163 )
 texture = ExtResource( 2 )
 offset = Vector2( -653.122, 94.7512 )
 
 [node name="leftleg" type="Sprite" parent="sprite" index="1"]
 
-position = Vector2( 6.75258, 14.9577 )
+position = Vector2( 6.75259, 14.9577 )
 rotation = -0.512313
 scale = Vector2( 0.029163, 0.029163 )
 texture = ExtResource( 3 )
@@ -433,7 +433,6 @@ offset = Vector2( -5.07207, 142.454 )
 [node name="eyes" type="Sprite" parent="sprite/head" index="0"]
 
 position = Vector2( 219.613, -94.2068 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 5 )
 offset = Vector2( -143.01, 170.809 )
 
@@ -474,7 +473,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( 0.669449, -2.36396 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="camera" type="Camera2D" parent="." index="2"]
 
@@ -518,7 +517,7 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/dash = SubResource( 5 )
+anims/dash = SubResource( 2 )
 anims/rest = SubResource( 3 )
 anims/run = SubResource( 4 )
 blend_times = [  ]

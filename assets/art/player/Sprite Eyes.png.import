@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hackathon Game Foreground.png-b85187b5df664e1748dc1bc09359df47.stex"
+path="res://.import/Sprite Eyes.png-3c39b68b69930cbe8ffc9ecb075d9196.stex"
 
 [deps]
 
-source_file="res://assets/art/fg/Hackathon Game Foreground.png"
-source_md5="c55e85f153f2f4381ffbecc4c572539c"
+source_file="res://assets/art/player/Sprite Eyes.png"
+source_md5="175e0423924392bc45dd889331825e4e"
 
-dest_files=[ "res://.import/Hackathon Game Foreground.png-b85187b5df664e1748dc1bc09359df47.stex" ]
-dest_md5="7c58a01ac5bd2b2a913ced328423ee6b"
+dest_files=[ "res://.import/Sprite Eyes.png-3c39b68b69930cbe8ffc9ecb075d9196.stex" ]
+dest_md5="def35d72445f72037a72c345d55f857f"
 
 [params]
 

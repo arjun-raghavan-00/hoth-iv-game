@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hackathon Game Foreground.png-b85187b5df664e1748dc1bc09359df47.stex"
+path="res://.import/Sprite Left Leg.png-87b5991f823ceea0f79466e20f9f6475.stex"
 
 [deps]
 
-source_file="res://assets/art/fg/Hackathon Game Foreground.png"
-source_md5="c55e85f153f2f4381ffbecc4c572539c"
+source_file="res://assets/art/player/Sprite Left Leg.png"
+source_md5="9f6224a90397ab20a13046459d52e919"
 
-dest_files=[ "res://.import/Hackathon Game Foreground.png-b85187b5df664e1748dc1bc09359df47.stex" ]
-dest_md5="7c58a01ac5bd2b2a913ced328423ee6b"
+dest_files=[ "res://.import/Sprite Left Leg.png-87b5991f823ceea0f79466e20f9f6475.stex" ]
+dest_md5="4f3b249c9f8f3179aa88dba5ad858169"
 
 [params]
 

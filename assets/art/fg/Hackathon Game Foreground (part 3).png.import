@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Hackathon Game Foreground.png-b85187b5df664e1748dc1bc09359df47.stex"
+path="res://.import/Hackathon Game Foreground (part 3).png-e3b55ff6038b7f4b2a6c0cb750cb2e8f.stex"
 
 [deps]
 
-source_file="res://assets/art/fg/Hackathon Game Foreground.png"
-source_md5="c55e85f153f2f4381ffbecc4c572539c"
+source_file="res://assets/art/fg/Hackathon Game Foreground (part 3).png"
+source_md5="f94b2faff4829e3bd4f4c1ad6926bb7d"
 
-dest_files=[ "res://.import/Hackathon Game Foreground.png-b85187b5df664e1748dc1bc09359df47.stex" ]
-dest_md5="7c58a01ac5bd2b2a913ced328423ee6b"
+dest_files=[ "res://.import/Hackathon Game Foreground (part 3).png-e3b55ff6038b7f4b2a6c0cb750cb2e8f.stex" ]
+dest_md5="57552642af74efb8a0b99251842a77df"
 
 [params]
 
